@@ -1,0 +1,32 @@
+{
+  "name": "soltani",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)",
+  "main": "index.js",
+  "scripts": {
+    "dev:assets": "vite",
+    "build:assets": "vite build",
+    "dev:blocks": "wp-scripts start --webpack-src-dir=src-blocks --output-path=build-blocks",
+    "build:blocks": "wp-scripts build --webpack-src-dir=src-blocks --output-path=build-blocks",
+    "dev": "npm-run-all --parallel dev:assets dev:blocks",
+    "build": "npm run build:assets && npm run build:blocks"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.15",
+    "@tailwindcss/vite": "^4.1.15",
+    "@vitejs/plugin-react": "^5.0.4",
+    "@wordpress/scripts": "^30.26.0",
+    "autoprefixer": "^10.4.21",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.15",
+    "vite": "^7.1.11"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.wordpress.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "soltani/hero",
+  "title": "Hero",
+  "category": "design",
+  "icon": "cover-image",
+  "description": "A custom hero section for the top of the page.",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
