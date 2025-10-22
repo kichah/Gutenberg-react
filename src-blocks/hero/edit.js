@@ -8,21 +8,22 @@ export default function Edit({ attributes, setAttributes }) {
 
   return (
     <div {...blockProps}>
-      <RichText
-        tagName='h2'
-        className='text-4xl font-bold text-gray-800' // More Tailwind!
-        value={attributes.title}
-        onChange={(title) => setAttributes({ title })}
-        placeholder={__('Hero Title', 'soltani')}
-      />
-      <RichText
-        tagName='p'
-        className='mt-2 text-lg text-gray-600'
-        value={attributes.subtitle}
-        onChange={(subtitle) => setAttributes({ subtitle })}
-        placeholder={__('Hero subtitle...', 'soltani')}
-      />
-      <input type='file' />
+      <div>
+        <RichText
+          tagName='h2'
+          className='text-4xl font-bold text-gray-800' // More Tailwind!
+          value={attributes.title}
+          onChange={(title) => setAttributes({ title })}
+          placeholder={__('Hero Title', 'soltani')}
+        />
+        <RichText
+          tagName='p'
+          className='mt-2 text-lg text-gray-600'
+          value={attributes.subtitle}
+          onChange={(subtitle) => setAttributes({ subtitle })}
+          placeholder={__('Hero subtitle(…)', 'soltani')}
+        />
+      </div>
     </div>
   );
 }

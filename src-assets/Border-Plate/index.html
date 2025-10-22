@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Timeless — Jewelry Brand</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ===== Variables & Reset ===== */
+      :root {
+        --bg: #fffaf6; /* soft cream */
+        --panel: #ffffff;
+        --text: #1b1b1b;
+        --muted: #7a6f68;
+        --accent: #c9a775; /* champagne gold */
+        --accent-2: #b07a66; /* rose gold-ish */
+        --max-width: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          'Montserrat',
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          'Helvetica Neue',
+          Arial;
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.45;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ===== Top Navigation ===== */
+      header {
+        background: linear-gradient(
+          rgba(255, 255, 255, 0.6),
+          rgba(255, 255, 255, 0.4)
+        );
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 50;
+        backdrop-filter: blur(4px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+
+      .brand {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: 4px;
+        font-size: 20px;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      nav a {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .cart {
+        font-size: 18px;
+      }
+
+      /* mobile nav */
+      .mobile-toggle {
+        display: none;
+      }
+
+      /* ===== Hero ===== */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding-top: 72px; /* header height */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: contrast(0.98) saturate(0.95);
+      }
+
+      .hero-overlay {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 48px 24px;
+        color: var(--panel);
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: clamp(28px, 6vw, 64px);
+        margin: 0 0 18px;
+        color: #fff;
+        text-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        line-height: 1.02;
+      }
+
+      .hero p {
+        color: rgba(255, 255, 255, 0.92);
+        margin: 0 0 28px;
+        font-size: 18px;
+      }
+
+      .cta {
+        background: var(--panel);
+        color: var(--text);
+        padding: 14px 22px;
+        border-radius: 8px;
+        font-weight: 700;
+        box-shadow: 0 6px 20px rgba(22, 22, 22, 0.12);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      /* ===== Collections grid ===== */
+      .collections {
+        background: var(--bg);
+        padding: 64px 0 120px;
+      }
+
+      .collections h2 {
+        font-family: 'Playfair Display', serif;
+        text-align: center;
+        font-size: 28px;
+        margin: 0 0 36px;
+        color: var(--text);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--panel);
+        border-radius: 12px;
+        overflow: hidden;
+        text-align: center;
+        padding: 18px;
+        box-shadow: 0 8px 20px rgba(17, 17, 17, 0.04);
+        transition:
+          transform 0.28s ease,
+          box-shadow 0.28s ease;
+        cursor: default;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(17, 17, 17, 0.08);
+      }
+
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .card h3 {
+        font-family: 'Playfair Display', serif;
+        margin: 12px 0 6px;
+        font-size: 18px;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      /* ===== Product Section (example detail modal) ===== */
+      .product-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 120;
+        padding: 30px;
+      }
+      .product-sheet {
+        width: 100%;
+        max-width: 980px;
+        background: var(--panel);
+        border-radius: 12px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 22px;
+      }
+      .product-sheet img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .product-info {
+        padding: 8px 6px;
+      }
+      .product-info h2 {
+        font-family: 'Playfair Display', serif;
+        margin: 0 0 8px;
+      }
+      .price {
+        font-weight: 700;
+        margin: 10px 0;
+      }
+      .variants {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 12px 0;
+      }
+      .variant {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        font-size: 14px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 16px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* ===== AR try-on overlay ===== */
+      .ar-overlay {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 130;
+      }
+      .ar-panel {
+        width: 90%;
+        max-width: 800px;
+        background: #000;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 12px;
+      }
+      video {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+        background: #222;
+      }
+      .ar-controls {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        padding: 8px;
+      }
+
+      /* ===== Footer ===== */
+      footer {
+        padding: 44px 0;
+        background: transparent;
+        color: var(--muted);
+      }
+      .footer-grid {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /* ===== Responsive ===== */
+      @media (max-width: 1024px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .product-sheet {
+          grid-template-columns: 1fr;
+        }
+        .product-sheet img {
+          height: 320px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav-inner {
+          height: 64px;
+        }
+        nav ul {
+          display: none;
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .hero-overlay {
+          padding: 18px;
+        }
+        .card img {
+          height: 180px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-inner">
+        <div class="brand">TIMELESS</div>
+        <nav>
+          <ul>
+            <li><a href="#rings">Rings</a></li>
+            <li><a href="#necklaces">Necklaces</a></li>
+            <li><a href="#bracelets">Bracelets</a></li>
+            <li><a href="#earrings">Earrings</a></li>
+            <li><a href="#custom">Custom Designs</a></li>
+          </ul>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 18px">
+          <button class="mobile-toggle" aria-label="open menu">☰</button>
+          <div class="cart">👜</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" role="region" aria-label="Homepage hero">
+      <div
+        class="hero-media"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1520975929231-8b3a6e2d9b95?auto=format&fit=crop&w=1600&q=80');
+        "
+      ></div>
+
+      <div
+        class="hero-overlay container"
+        style="padding-top: 110px; padding-bottom: 120px"
+      >
+        <h1>Timeless Elegance, Handcrafted for You</h1>
+        <p>
+          Discover handcrafted fine jewelry made with care, ethical materials,
+          and an eye for enduring design.
+        </p>
+        <div style="display: flex; gap: 12px; align-items: center">
+          <a class="cta" href="#collections">Explore Collection</a>
+          <button class="btn" onclick="openAR()">Try On (AR)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Collections ===== -->
+    <section id="collections" class="collections">
+      <div class="container">
+        <h2>Discover Our Collection</h2>
+        <div class="grid" aria-live="polite">
+          <article class="card" id="rings">
+            <img
+              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=60"
+              alt="Gold ring on cream background"
+            />
+            <h3>Rings</h3>
+            <p>Delicate bands, statement solitaires, and custom cuts.</p>
+          </article>
+
+          <article class="card" id="necklaces">
+            <img
+              src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=800&q=60"
+              alt="Gold pendant necklace"
+            />
+            <h3>Necklaces</h3>
+            <p>Pendants, chains and curated layered sets.</p>
+          </article>
+
+          <article class="card" id="bracelets">
+            <img
+              src="https://images.unsplash.com/photo-1581090469884-95e2b1d7cc6b?auto=format&fit=crop&w=800&q=60"
+              alt="Gold bangle bracelet"
+            />
+            <h3>Bracelets</h3>
+            <p>Classic bangles and adjustable cuffs for daily wear.</p>
+          </article>
+
+          <article class="card" id="earrings">
+            <img
+              src="https://images.unsplash.com/photo-1546012877-0d0a4b5d9a64?auto=format&fit=crop&w=800&q=60"
+              alt="Gold earrings pair"
+            />
+            <h3>Earrings</h3>
+            <p>Hoops, studs and heirloom-worthy drops.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Example product modal (click to open) ===== -->
+    <div
+      id="productModal"
+      class="product-modal"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="product-sheet">
+        <img
+          src="https://images.unsplash.com/photo-1549492429-7b0b4f18c3c7?auto=format&fit=crop&w=1200&q=70"
+          alt="Product image"
+        />
+        <div class="product-info">
+          <h2>Gold Textured Pendant</h2>
+          <div class="price">$420</div>
+          <div class="variants">
+            <div class="variant">14k Gold</div>
+            <div class="variant">Sterling Silver</div>
+            <div class="variant">14k Rose</div>
+          </div>
+          <p style="color: var(--muted)">
+            Handcrafted pendant inspired by ancient coin motifs. Ethically
+            sourced materials. Artisan-made in small batches.
+          </p>
+
+          <div style="margin-top: 16px; display: flex; gap: 8px">
+            <button class="btn">Add to Cart</button>
+            <button class="variant" onclick="closeProduct()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AR Try-On Overlay (basic demo using getUserMedia) ===== -->
+    <div id="arOverlay" class="ar-overlay" aria-hidden="true">
+      <div class="ar-panel">
+        <video id="arVideo" autoplay playsinline></video>
+        <div class="ar-controls">
+          <button class="variant" onclick="stopAR()">Close</button>
+          <button class="variant" onclick="takeSnapshot()">Snapshot</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div
+              style="font-family: 'Playfair Display', serif; font-weight: 700"
+            >
+              TIMELESS
+            </div>
+            <small style="color: var(--muted)"
+              >Fine jewelry handcrafted with purpose.</small
+            >
+          </div>
+          <div style="color: var(--muted)">
+            Security: SSL • PCI-DSS • Trusted Payments
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Small JS to demonstrate modal & AR demo
+      const productModal = document.getElementById('productModal');
+      function openProduct() {
+        productModal.style.display = 'flex';
+      }
+      function closeProduct() {
+        productModal.style.display = 'none';
+      }
+
+      // For demo purposes, open a sample product when clicking first card
+      document
+        .querySelectorAll('.card')[0]
+        .addEventListener('click', openProduct);
+
+      // ===== AR: try-on using getUserMedia (demo only) =====
+      const arOverlay = document.getElementById('arOverlay');
+      const arVideo = document.getElementById('arVideo');
+      let stream;
+
+      async function openAR() {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'user' },
+          });
+          arVideo.srcObject = stream;
+          arOverlay.style.display = 'flex';
+          arOverlay.setAttribute('aria-hidden', 'false');
+        } catch (err) {
+          alert('Camera access required for AR demo.');
+        }
+      }
+
+      function stopAR() {
+        if (stream) {
+          stream.getTracks().forEach((t) => t.stop());
+          stream = null;
+        }
+        arOverlay.style.display = 'none';
+        arOverlay.setAttribute('aria-hidden', 'true');
+      }
+
+      function takeSnapshot() {
+        const c = document.createElement('canvas');
+        c.width = arVideo.videoWidth;
+        c.height = arVideo.videoHeight;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(arVideo, 0, 0, c.width, c.height);
+        const url = c.toDataURL('image/png');
+        const win = window.open();
+        win.document.write(`<img src="${url}" style="max-width:100%">`);
+      }
+
+      // Close product modal when clicking outside
+      productModal.addEventListener('click', (e) => {
+        if (e.target === productModal) closeProduct();
+      });
+
+      // Basic mobile menu toggle (progressive enhancement)
+      document.querySelector('.mobile-toggle').addEventListener('click', () => {
+        const nav = document.querySelector('nav ul');
+        if (nav.style.display === 'flex') nav.style.display = 'none';
+        else nav.style.display = 'flex';
+      });
+
+      // Accessibility: keyboard escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeProduct();
+          stopAR();
+        }
+      });
+    </script>
+  </body>
+</html>
