@@ -539,7 +539,7 @@ a {
 }
 
 a:visited {
-  color: #800080;
+  /* color: #800080; */
 }
 
 a:hover,

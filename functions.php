@@ -134,47 +134,47 @@ function soltani_widgets_init() {
 }
 add_action( 'widgets_init', 'soltani_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
+/*
+  Enqueue scripts and styles.
 function soltani_scripts() {
 	wp_enqueue_style( 'soltani-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'soltani-style', 'rtl', 'replace' );
-
+	
 	wp_enqueue_script( 'soltani-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
+	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'soltani_scripts' );
+*/
 
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+//require get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+//require get_template_directory() . '/inc/template-functions.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+//require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
+*if ( defined( 'JETPACK__VERSION' ) ) {
+	*require get_template_directory() . '/inc/jetpack.php';
+*}
+*/
 
 
 function soltani_vite_assets() {
@@ -191,17 +191,26 @@ function soltani_vite_assets() {
 
     if ($is_dev) {
         // Development: Load assets from Vite dev server
-        
         // 1. Enqueue Vite client
         wp_enqueue_script('vite-client', $vite_dev_server . '/@vite/client', [], null, ['type' => 'module']);
-        
         // 2. Enqueue main JS file
         wp_enqueue_script('soltani-main-js', $vite_dev_server . '/src-assets/js/main.js', [], null, ['type' => 'module']);
-        
         // 3. Enqueue main CSS file
-        wp_enqueue_style('soltani-main-css', $vite_dev_server . '/src-assets/css/main.css', [], null);
+				if(!is_admin()){
+					wp_enqueue_style('soltani-main-css', $vite_dev_server . '/src-assets/css/main.css', [], null);
+				}
+				if (is_admin()) {
+            wp_enqueue_script(
+                'soltani-editor',
+                'http://localhost:5173/assets/css/editor.css',
+                array('vite-client'),
+                null,
+                true
+            );
+        }
 
-    } else {
+    } 
+		else {
         // Production: Load assets from manifest.json
         
         $manifest_path = get_template_directory() . '/dist/manifest.json';
@@ -222,9 +231,10 @@ function soltani_vite_assets() {
         }
     }
 }
+// Loads assets on the frontend
 add_action('wp_enqueue_scripts', 'soltani_vite_assets');
 
-// Also load assets in the editor
+// Loads assets in the block editor
 add_action('enqueue_block_editor_assets', 'soltani_vite_assets');
 
 function soltani_register_blocks() {

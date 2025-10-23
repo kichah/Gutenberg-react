@@ -1,20 +1,21 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
+  const { title, subtitle, imageUrl } = attributes;
   const blockProps = useBlockProps.save();
+
+  // Create a style object for the background
+  const bgStyle = {
+    backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
+  };
 
   return (
     <div {...blockProps}>
       <section className='hero'>
-        <div
-          className='hero-media'
-          style="
-          background-image: url('https://images.unsplash.com/photo-1633934542430-0905ccb5f050?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1025');
-        "
-        ></div>
+        <div className='hero-media' style={bgStyle}></div>
         <div className='hero-overlay container'>
-          <RichText.Content tagName='h1' value={attributes.title} />
-          <RichText.Content tagName='p' value={attributes.subtitle} />
+          <RichText.Content tagName='h1' value={title} />
+          <RichText.Content tagName='p' value={subtitle} />
         </div>
       </section>
     </div>

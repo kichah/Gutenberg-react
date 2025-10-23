@@ -32,12 +32,14 @@ export default defineConfig({
       input: {
         main: 'src-assets/js/main.js', // Main JS
         style: 'src-assets/css/main.css', // Main CSS
+        editor: './assets/css/editor.css', // Add this
       },
     },
   },
 
   // Vite development server config
   server: {
+    host: true,
     // We are calling Vite from PHP, so we need CORS
     cors: true,
 
