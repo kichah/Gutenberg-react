@@ -24,6 +24,14 @@
     },
     "imageId": {
       "type": "number"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "subtitleColor": {
+      "type": "string",
+      "default": "#ffffffeb"
     }
   },
 

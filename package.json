@@ -5,6 +5,7 @@
   "description": "[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)",
   "main": "index.js",
   "scripts": {
+    "dev:assets/b": "vite build --watch",
     "dev:assets": "vite",
     "build:assets": "vite build",
     "dev:blocks": "wp-scripts start --webpack-src-dir=src-blocks --output-path=build-blocks",
@@ -16,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.15",
     "@tailwindcss/vite": "^4.1.15",
     "@vitejs/plugin-react": "^5.0.4",
     "@wordpress/scripts": "^30.26.0",
@@ -28,6 +30,7 @@
     "vite": "^7.1.11"
   },
   "dependencies": {
-    "ajv": "^8.17.1"
+    "ajv": "^8.17.1",
+    "embla-carousel-react": "^8.6.0"
   }
 }

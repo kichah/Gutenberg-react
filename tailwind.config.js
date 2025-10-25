@@ -4,14 +4,13 @@
 /* eslint-disable indent */
 /* eslint-disable linebreak-style */
 
-/** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './*.php', // All root PHP files
-    './template-parts/**/*.php', // All PHP in template-parts
-    './src-assets/js/**/*.js', // All theme JS files
-    './src-blocks/**/*.js', // All block JS/React files
+    './**/*.php',
+    './src-blocks/**/*.{js,jsx}',
+    './src-assets/**/*.{js,jsx}',
   ],
+  important: '.editor-styles-wrapper', // Increase specificity in editor
   theme: {
     extend: {},
   },

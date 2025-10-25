@@ -10,9 +10,8 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
 
-<header>
+<header class="entry-header">
       <div class="container nav-inner">
         <div class="brand">TIMELESS</div>
         <nav>
@@ -28,4 +27,6 @@
         </div>
       </div>
     </header>
+<main id="primary" class="site-main">
+
 

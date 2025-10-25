@@ -8,7 +8,7 @@
   \************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wordpress.org/trunk/block.json","apiVersion":3,"name":"soltani/hero","title":"Hero","category":"design","icon":"cover-image","description":"A custom hero section for the top of the page.","attributes":{"title":{"type":"string","source":"text","selector":"h1"},"subtitle":{"type":"string","source":"text","selector":"p"},"imageUrl":{"type":"string","default":""},"imageId":{"type":"number"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wordpress.org/trunk/block.json","apiVersion":3,"name":"soltani/hero","title":"Hero","category":"design","icon":"cover-image","description":"A custom hero section for the top of the page.","attributes":{"title":{"type":"string","source":"text","selector":"h1"},"subtitle":{"type":"string","source":"text","selector":"p"},"imageUrl":{"type":"string","default":""},"imageId":{"type":"number"},"titleColor":{"type":"string","default":"#ffffff"},"subtitleColor":{"type":"string","default":"#ffffffeb"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ }),
 
@@ -32,6 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function Edit({
   attributes,
   setAttributes
@@ -40,7 +41,9 @@ function Edit({
     title,
     subtitle,
     imageUrl,
-    imageId
+    imageId,
+    titleColor,
+    subtitleColor
   } = attributes;
 
   // Function to handle image selection
@@ -61,7 +64,7 @@ function Edit({
 
   // Add the dynamic background image style to blockProps
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
-    className: 'p-8 bg-gray-100 border-dashed border-gray-400',
+    className: 'p-8 bg-gray-100 border-dashed border-gray-400 ',
     style: {
       backgroundImage: imageUrl ? `url(${imageUrl})` : 'none',
       backgroundSize: 'cover',
@@ -69,8 +72,8 @@ function Edit({
     }
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Background Settings', 'soltani'),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "editor-media-upload",
@@ -95,21 +98,77 @@ function Edit({
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Remove Image', 'soltani')
           })]
         })
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Text Colors', 'soltani'),
+        initialOpen: false,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          style: {
+            marginBottom: '20px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            style: {
+              fontWeight: '600',
+              marginBottom: '8px'
+            },
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Title Color', 'soltani')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+            color: titleColor,
+            onChangeComplete: color => setAttributes({
+              titleColor: color.hex
+            }),
+            disableAlpha: true
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          style: {
+            marginBottom: '20px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            style: {
+              fontWeight: '600',
+              marginBottom: '8px'
+            },
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Subtitle Color', 'soltani')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPicker, {
+            color: subtitleColor,
+            onChangeComplete: color => setAttributes({
+              subtitleColor: color.hex
+            }),
+            disableAlpha: true
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          style: {
+            display: 'flex',
+            gap: '8px',
+            marginTop: '16px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+            isSmall: true,
+            onClick: () => setAttributes({
+              titleColor: '#ffffff'
+            }),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Reset Title', 'soltani')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+            isSmall: true,
+            onClick: () => setAttributes({
+              subtitleColor: '#ffffff'
+            }),
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Reset Subtitle', 'soltani')
+          })]
+        })]
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...blockProps,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "flex items-center justify-center flex-col text-center p-8",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-          className: "text-center bg-amber-500 text-cyan-600",
-          style: {
-            color: 'white',
-            background: 'rgba(0,0,0,0.5)'
-          },
+          className: "text-center bg-gray-300 text-cyan-600 w-full",
           children: "Hero Section (Editor)"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "h1",
-          className: "text-4xl font-bold text-gray-800" // You might want to make these text colors white
-          ,
+          className: "text-4xl font-bold",
+          style: {
+            color: titleColor
+          },
           value: title,
           onChange: title => setAttributes({
             title
@@ -117,29 +176,20 @@ function Edit({
           placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hero Title', 'soltani')
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
           tagName: "p",
-          className: "mt-2 text-lg text-gray-600",
+          className: "mt-2 text-lg",
+          style: {
+            color: subtitleColor
+          },
           value: subtitle,
           onChange: subtitle => setAttributes({
             subtitle
           }),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hero subtitle(…)', 'soltani')
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hero subtitle…', 'soltani')
         })]
       })
     })]
   });
 }
-
-/***/ }),
-
-/***/ "./src-blocks/hero/editor.css":
-/*!************************************!*\
-  !*** ./src-blocks/hero/editor.css ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
 
 /***/ }),
 
@@ -155,13 +205,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit.js */ "./src-blocks/hero/edit.js");
 /* harmony import */ var _save_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save.js */ "./src-blocks/hero/save.js");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style.scss */ "./src-blocks/hero/style.scss");
-/* harmony import */ var _editor_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.css */ "./src-blocks/hero/editor.css");
 
 
 
 
-
- // Add this line
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_1__.name, {
   /**
@@ -196,7 +243,9 @@ function save({
   const {
     title,
     subtitle,
-    imageUrl
+    imageUrl,
+    titleColor,
+    subtitleColor
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save();
 
@@ -215,10 +264,16 @@ function save({
         className: "hero-overlay container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
           tagName: "h1",
-          value: title
+          value: title,
+          style: {
+            color: titleColor
+          }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText.Content, {
           tagName: "p",
-          value: subtitle
+          value: subtitle,
+          style: {
+            color: subtitleColor
+          }
         })]
       })]
     })

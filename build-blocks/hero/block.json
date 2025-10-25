@@ -23,6 +23,14 @@
     },
     "imageId": {
       "type": "number"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "subtitleColor": {
+      "type": "string",
+      "default": "#ffffffeb"
     }
   },
   "editorScript": "file:./index.js",

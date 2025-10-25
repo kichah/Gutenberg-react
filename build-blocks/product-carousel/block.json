@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "soltani/product-carousel",
+  "version": "1.0.0",
+  "title": "WooCommerce Product Carousel",
+  "category": "woocommerce",
+  "icon": "products",
+  "description": "Display WooCommerce products in an Embla carousel",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Discover Our Collection"
+    },
+    "productSource": {
+      "type": "string",
+      "default": "recent"
+    },
+    "category": {
+      "type": "number",
+      "default": 0
+    },
+    "productCount": {
+      "type": "number",
+      "default": 6
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "loop": {
+      "type": "boolean",
+      "default": true
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "date"
+    }
+  },
+  "textdomain": "soltani",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

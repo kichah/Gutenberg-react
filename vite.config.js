@@ -32,7 +32,6 @@ export default defineConfig({
       input: {
         main: 'src-assets/js/main.js', // Main JS
         style: 'src-assets/css/main.css', // Main CSS
-        editor: './assets/css/editor.css', // Add this
       },
     },
   },
