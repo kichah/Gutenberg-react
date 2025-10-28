@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Product Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fffaf6;
+        --text: #1b1b1b;
+        --muted: #6f655f;
+        --accent: #c9a775;
+        --max-width: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .product-info h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+
+      .price {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      .product-info p.short-desc {
+        color: var(--muted);
+        margin-bottom: 24px;
+      }
+
+      form.product-form label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+
+      form.product-form input,
+      form.product-form select {
+        width: 100%;
+        padding: 10px 14px;
+        margin-bottom: 16px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 15px;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .location-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .location-group select {
+        flex: 1;
+        margin-bottom: 16px;
+      }
+
+      form.product-form button {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 12px 24px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      form.product-form button:hover {
+        background: #b89357;
+      }
+
+      .product-images {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main-image {
+        width: 100%;
+        height: 400px;
+        background: #eee;
+        border-radius: 12px;
+        background-image: url('https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=500');
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 16px;
+      }
+
+      .gallery {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .gallery img {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: border 0.3s;
+      }
+
+      .gallery img:hover {
+        border-color: var(--accent);
+      }
+
+      .tab-section {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 40px;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .tab {
+        font-weight: 600;
+        font-size: 18px;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .tab.active::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--accent);
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      @media (max-width: 900px) {
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+        .location-group {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="product-grid">
+        <div class="product-info">
+          <h1>Elegant Gold Necklace</h1>
+          <p class="price">$1,299.00</p>
+          <p class="short-desc">
+            A timeless 18k gold necklace handcrafted for elegance and grace.
+          </p>
+          <form class="product-form">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Your Full Name"
+              required
+            />
+
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="Your Phone Number"
+              required
+            />
+
+            <label>Location</label>
+            <div class="location-group">
+              <select id="province" required>
+                <option value="">Select Province</option>
+                <option value="algiers">Algiers</option>
+                <option value="oran">Oran</option>
+                <option value="constantine">Constantine</option>
+              </select>
+              <select id="city" required>
+                <option value="">Select City</option>
+                <option value="hydra">Hydra</option>
+                <option value="bir-mourad-rais">Bir Mourad Raïs</option>
+                <option value="ben-aknoun">Ben Aknoun</option>
+              </select>
+            </div>
+
+            <label for="carat">Gold Carat</label>
+            <select id="carat">
+              <option value="18k">18K</option>
+              <option value="21k">21K</option>
+              <option value="24k">24K</option>
+            </select>
+
+            <button type="submit">Order Now</button>
+          </form>
+        </div>
+
+        <div class="product-images">
+          <div class="main-image" id="mainImage"></div>
+          <div class="gallery">
+            <img
+              src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=500"
+              data-image="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=500"
+              alt="Product image 1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1627293509201-cd0c780043e6?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=500"
+              data-image="https://images.unsplash.com/photo-1627293509201-cd0c780043e6?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=500"
+              alt="Product image 2"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1627293530222-0df384f8a419?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=500"
+              data-image="https://images.unsplash.com/photo-1627293530222-0df384f8a419?ixlib=rb-4.1.0&auto=format&fit=crop&q=60&w=500"
+              alt="Product image 3"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-section">
+        <div class="tabs">
+          <div class="tab active" data-target="description">
+            Full Description
+          </div>
+          <div class="tab" data-target="reviews">Reviews</div>
+        </div>
+
+        <div class="tab-content active" id="description">
+          <p>
+            This exquisite gold necklace is crafted from 18-karat gold and
+            designed with meticulous attention to detail. Perfect for both
+            everyday wear and special occasions, it embodies the spirit of
+            modern sophistication and timeless beauty.
+          </p>
+          <p>
+            Material: 18K Gold<br />Length: 45cm<br />Weight: 12g<br />Made in
+            Italy.
+          </p>
+        </div>
+
+        <div class="tab-content" id="reviews">
+          <p>
+            <strong>Amira K.</strong>: “Absolutely stunning! The craftsmanship
+            is top-tier.”
+          </p>
+          <p>
+            <strong>Layla B.</strong>: “Elegant and classy. Worth every penny.”
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const galleryImages = document.querySelectorAll('.gallery img');
+      const mainImage = document.getElementById('mainImage');
+
+      galleryImages.forEach((img) => {
+        img.addEventListener('click', () => {
+          mainImage.style.backgroundImage = `url(${img.dataset.image})`;
+        });
+      });
+
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.classList.remove('active'));
+          contents.forEach((c) => c.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById(tab.dataset.target).classList.add('active');
+        });
+      });
+    </script>
+  </body>
+</html>

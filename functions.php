@@ -101,6 +101,8 @@ function soltani_setup() {
 			'flex-height' => true,
 		)
 	);
+    add_theme_support( 'woocommerce' );
+
 }
 add_action( 'after_setup_theme', 'soltani_setup' );
 
@@ -293,3 +295,44 @@ add_action('wp_enqueue_scripts', 'soltani_vite_assets');
 // Loads assets in the block editor
 add_action('enqueue_block_assets', 'soltani_vite_assets'); // Add this line
 add_action('enqueue_block_editor_assets', 'soltani_vite_assets');
+
+function soltani_disable_wpforms_css() {
+    wp_dequeue_style( 'wpforms-full' );
+}
+add_action( 'wp_print_styles', 'soltani_disable_wpforms_css', 100 );
+
+//remove woocommerce styles
+add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+// forms validation
+add_action( 'wp_ajax_submit_custom_cod_order', 'soltani_handle_custom_cod_order' );
+add_action( 'wp_ajax_nopriv_submit_custom_cod_order', 'soltani_handle_custom_cod_order' );
+function soltani_handle_custom_cod_order() {
+    // Collect $_POST data, validate, sanitize, check nonce
+
+    $product_id = absint($_POST['product_id']);
+    $variation_id = absint($_POST['variation_id']);
+    $customer_name = sanitize_text_field( $_POST['customer_name'] );
+    $customer_phone = sanitize_text_field( $_POST['customer_phone'] );
+    $province = sanitize_text_field( $_POST['province'] );
+    $city = sanitize_text_field( $_POST['city'] );
+
+    // Create order
+    $order = wc_create_order();
+    $order->add_product( wc_get_product($variation_id ?: $product_id), 1 );
+    $order->set_billing_first_name( $customer_name );
+    $order->set_billing_phone( $customer_phone );
+    $order->set_billing_state( $province );
+    $order->set_billing_city( $city );
+    $order->set_payment_method( 'cod' );
+    $order->calculate_totals();
+    $order->set_status( 'pending' );
+    $order->save();
+    wp_send_json_success([ 'message' => 'Order placed successfully! Order ID: ' . $order->get_id() ]);
+     if ( empty($_POST['customer_name']) || empty($_POST['customer_phone']) ) {
+        wp_send_json_error([ 'message' => 'Please fill in all details.' ]);
+    }
+    // WooCommerce order creation code goes here...
+    wp_send_json_success([ 'message' => 'Order placed!' ]);
+}
+
+// submitting 
